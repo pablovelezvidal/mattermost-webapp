@@ -1378,6 +1378,8 @@ class CreatePost extends React.PureComponent {
 
         let preview = null;
         if (!readOnlyChannel && (draft.fileInfos.length > 0 || draft.uploadsInProgress.length > 0)) {
+            // console.log('draft', draft);
+            // console.log('percent progress', this.state.uploadsProgressPercent);
             preview = (
                 <FilePreview
                     fileInfos={draft.fileInfos}

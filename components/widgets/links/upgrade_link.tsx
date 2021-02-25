@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {useDispatch} from 'react-redux';
 
 import {DispatchFunc} from 'mattermost-redux/types/actions';
@@ -15,6 +15,8 @@ import PurchaseModal from 'components/purchase_modal';
 
 export interface UpgradeLinkProps {
     telemetryInfo?: string;
+    extraClass?: string;
+    buttonText?: ReactNode;
 }
 
 const UpgradeLink: React.FC<UpgradeLinkProps> = (props: UpgradeLinkProps) => {
@@ -36,13 +38,13 @@ const UpgradeLink: React.FC<UpgradeLinkProps> = (props: UpgradeLinkProps) => {
     };
     return (
         <button
-            className='upgradeLink'
+            className={`upgradeLink ${props.extraClass ? props.extraClass : ''}`}
             onClick={(e) => handleLinkClick(e)}
         >
-            <FormattedMessage
+            {props.buttonText ? props.buttonText : <FormattedMessage
                 id='upgradeLink.warn.upgrade_now'
                 defaultMessage='Upgrade now'
-            />
+            />}
         </button>
     );
 };
